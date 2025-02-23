@@ -1,6 +1,6 @@
 import os
-from os.path import isfile
 import sys
+
 
 taskTuple = ("TODO", "FIX", "NOTE", "ERROR")
 
@@ -11,11 +11,14 @@ def getFile(filename: str) -> list[str]:
 def readTask(fBuffer: list[str], filename: str):
     taskList = list()
     for i in fBuffer: 
-        # FIX startswith(comSufix) <- based on languge; only work with python
-        if i.startswith('#') & any(temp in i for temp in taskTuple): taskList.append(i)
+        # FIX startswith(commSufix) <- based on languge; only work with python
+        if i.startswith('#') & any(temp in i for temp in taskTuple): 
+            taskList.append(i.replace('\n', ''))
 
-    print(f"@ {filename} :: found {len(taskList)} tasks!")
-    for i in taskList: print(i)
+    print(f"@ {filename} :: found {len(taskList)} tasks! (ln: {len(fBuffer)})")
+
+    # NOTE we print todo's here
+    for i in taskList: print("    ", i)
     pass
 
 def main():
@@ -24,7 +27,7 @@ def main():
 
     for iArg in args:
         tempExPath = os.path.join(os.getcwd(), "src", iArg)
-        if os.path.isfile(tempExPath): readTask(getFile(tempExPath), "ex.py")
+        if os.path.isfile(tempExPath): readTask(getFile(tempExPath), iArg)
 
         # print(f"count of args :: {args[iArg]}")
     
