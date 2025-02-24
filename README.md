@@ -1,12 +1,26 @@
-# codeThings - Find your all of your TODO's
+# codeThings
 
-## Objectives
-### Easy ones
-- Find all TODO; NOTE; FIX; ERROR; ... inside of files recursively
-    - Specify what type of files you're looking for e.g.: Python, C etc...
+Find your all of your TODO's.
+## Usage/Examples
 
-- Mark TODO's as done and remove item from source.
+```bash
+$ python3 main.py
 
-### Hard ones
-- Optimize recursive process 
-    - Operate on git could be the way to go.
+@ src/ex.py :: found 4 tasks!
+
+	# TODO: fhosiofs
+	# FIX
+	# NOTE
+	# ERROR:
+
+@ src/utils/fileIO.py :: found 2 tasks!
+
+	# FIX: gitignore might not be present in path; will cause erros
+	# TODO: make this bit into a config file
+
+@ README.md :: found 1 tasks!
+
+	# codeThings - Find your all of your TODO's
+```
+
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
