@@ -5,12 +5,15 @@ from utils.fileIO import Utils
 app = typer.Typer(name="codeThings")
 
 @app.command()
-def main(inputfolder: str = typer.Option("", "--input", "-i", help="Input folder")): 
+def main(
+        lang: str = typer.Option("", "--lang", help="Choose a language"), 
+        inputfolder: str = typer.Option("", "--input", "-i", help="Input folder")): 
     foundFiles = Utils()
    
     foundFiles.pathSelector()
     foundFiles.findFiles('.gitignore')
     foundFiles.fetchBuffer()
+
     foundFiles.fetchTasks()
 
     pass

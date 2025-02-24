@@ -3,7 +3,7 @@ import glob
 import re
 from pathspec import PathSpec
 
-# FIX gitignore might not be present in path; will cause erros
+# FIX: gitignore might not be present in path; will cause erros
 
 class Utils:
     def __init__(self) -> None:
@@ -22,6 +22,9 @@ class Utils:
         else: return self.cwd
 
     def findFiles(self, ignoreFilePath: str):
+        
+        if not os.path.isfile(ignoreFilePath):
+            raise Exception(f"No such file named {ignoreFilePath} in: {self.cwd}")
 
         with open(ignoreFilePath, 'r', encoding='utf-8') as f:
             ignFile = f.readlines()
