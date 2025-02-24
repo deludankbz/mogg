@@ -13,14 +13,19 @@ class Utils:
 
         pass
 
-    def findFiles(self, chosenFolder=None):
-        print(chosenFolder)
-        fmtGlobPath = os.path.join(self.cwd, "*")
+    def pathSelector(self, chosenFolder=None):
+        if chosenFolder != None: return os.path.join(self.cwd, chosenFolder)
+        else: return self.cwd
 
-        for name in glob.glob(fmtGlobPath, recursive=True): 
+    def findFiles(self):
+        fmtGlobPath = os.path.join(self.pathSelector(), "**")
+
+        for name in glob.glob(fmtGlobPath, recursive=True):
             matchedRef = re.search(r'^.+\.[a-zA-Z0-9]+$', name)
 
-            if matchedRef: self.foundFiles.append(name)
+            if matchedRef: 
+                self.foundFiles.append(name)
+                print(name)
 
         return self.foundFiles
 
@@ -35,7 +40,5 @@ class Utils:
 
     def fetchTasks(self):
         for iDicts in self.taskBuffers:
-            for lines in iDicts["buffer"]: 
-                if lines.startswith("#"): 
-                    print(lines.replace('\n', ''))
+            print(iDicts)
         pass
