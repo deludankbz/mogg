@@ -57,10 +57,10 @@ class Utils:
                     self.foundTasks.append(fmtLine)
 
             if len(self.foundTasks) > 0: 
-                print(f"\n@ {iDicts["filename"]} :: found {len(self.foundTasks)} tasks!\n")
+                print(f"\x1b[1;90m\n@ {iDicts["filename"]} :: found {len(self.foundTasks)} tasks!\x1b[0m\n")
 
                 for i in self.foundTasks: 
-                    print(f"\t{i}", len(self.foundTasks))
+                    print(f"\t\x1b[1;96m{i}\x1b[0m")
 
                 self.foundTasks.clear()
         pass
