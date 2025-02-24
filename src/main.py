@@ -8,12 +8,10 @@ app = typer.Typer(name="codeThings")
 def main(inputfolder: str = typer.Option("", "--input", "-i", help="Input folder")): 
     foundFiles = Utils()
    
-    if os.path.isdir(inputfolder):
-        foundFiles.pathSelector()
-        foundFiles.findFiles()
-        foundFiles.fetchBuffer()
-        foundFiles.fetchTasks()
-    else: raise Exception(FileNotFoundError)
+    foundFiles.pathSelector()
+    foundFiles.findFiles('.gitignore')
+    foundFiles.fetchBuffer()
+    foundFiles.fetchTasks()
 
 
     # exPath = os.path.join(os.getcwd(), "src", "ex.py")

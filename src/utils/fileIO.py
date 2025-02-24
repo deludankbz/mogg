@@ -1,6 +1,7 @@
 import os
 import glob
 import re
+from pathspec import PathSpec
 
 class Utils:
     def __init__(self) -> None:
@@ -13,21 +14,26 @@ class Utils:
 
         pass
 
-    def pathSelector(self, chosenFolder=None):
+    def pathSelector(self, chosenFolder=None) -> str:
         if chosenFolder != None: return os.path.join(self.cwd, chosenFolder)
         else: return self.cwd
 
-    def findFiles(self):
-        fmtGlobPath = os.path.join(self.pathSelector(), "**")
+    def findFiles(self, ignoreFilePath: str):
 
-        for name in glob.glob(fmtGlobPath, recursive=True):
-            matchedRef = re.search(r'^.+\.[a-zA-Z0-9]+$', name)
+        with open(ignoreFilePath, 'r', encoding='utf-8') as f:
+            ignFile = f.readlines()
 
-            if matchedRef: 
-                self.foundFiles.append(name)
-                print(name)
+            spec = PathSpec.from_lines('gitwildmatch', ignFile)
 
-        return self.foundFiles
+            fmtGlobPath = os.path.join(self.pathSelector(), "**")
+
+            for name in glob.glob(fmtGlobPath, recursive=True):
+                matchedRef = re.search(r'^.+\.[a-zA-Z0-9]+$', name)
+
+                if matchedRef: 
+                    if not spec.match_file(name): self.foundFiles.append(name)
+
+            return self.foundFiles
 
     def fetchBuffer(self) -> list[dict]:
         for file in self.foundFiles:
@@ -40,5 +46,5 @@ class Utils:
 
     def fetchTasks(self):
         for iDicts in self.taskBuffers:
-            print(iDicts)
+            print(iDicts["buffer"])
         pass
