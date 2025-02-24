@@ -13,9 +13,6 @@ def main(inputfolder: str = typer.Option("", "--input", "-i", help="Input folder
     foundFiles.fetchBuffer()
     foundFiles.fetchTasks()
 
-
-    # exPath = os.path.join(os.getcwd(), "src", "ex.py")
-    
     pass
 
 if __name__ == '__main__':

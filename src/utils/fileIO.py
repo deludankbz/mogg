@@ -3,11 +3,14 @@ import glob
 import re
 from pathspec import PathSpec
 
+# FIX gitignore might not be present in path; will cause erros
+
 class Utils:
     def __init__(self) -> None:
-        # TODO make this bit into a config file
+        # TODO: make this bit into a config file
         self.taskTokens = ("TODO", "FIX", "NOTE", "ERROR")
-        self.taskBuffers = list()
+        self.fileBuffers = list()
+        self.foundTasks = list()
 
         self.cwd = os.getcwd()
         self.foundFiles = list()
@@ -40,11 +43,24 @@ class Utils:
             if os.path.isfile(file):
                 with open(file,'r') as fopen_buffer:
                     newBuffer = {"filename": file, "buffer": fopen_buffer.readlines()}
-                    self.taskBuffers.append(newBuffer)
+                    self.fileBuffers.append(newBuffer)
 
-        return self.taskBuffers
+        return self.fileBuffers
 
     def fetchTasks(self):
-        for iDicts in self.taskBuffers:
-            print(iDicts["buffer"])
+        for iDicts in self.fileBuffers: 
+
+            for line in iDicts["buffer"]: 
+                fmtLine = line.replace('\n', '').replace('    ', '')
+
+                if fmtLine.startswith('#') & any(temp in fmtLine for temp in self.taskTokens): 
+                    self.foundTasks.append(fmtLine)
+
+            if len(self.foundTasks) > 0: 
+                print(f"\n@ {iDicts["filename"]} :: found {len(self.foundTasks)} tasks!\n")
+
+                for i in self.foundTasks: 
+                    print(f"\t{i}", len(self.foundTasks))
+
+                self.foundTasks.clear()
         pass
