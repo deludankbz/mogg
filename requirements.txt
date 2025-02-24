@@ -1,0 +1,8 @@
+click
+markdown-it-py
+mdurl
+Pygments
+rich
+shellingham
+typer
+typing_extensions

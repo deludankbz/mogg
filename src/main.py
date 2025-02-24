@@ -1,36 +1,57 @@
 import os
+import glob
+import re
 import sys
 
+class Utils:
+    def __init__(self) -> None:
+        # TODO make this bit into a config file
+        self.taskTokens = ("TODO", "FIX", "NOTE", "ERROR")
+        self.taskBuffers = list()
 
-taskTuple = ("TODO", "FIX", "NOTE", "ERROR")
+        self.cwd = os.getcwd()
+        self.foundFiles = list()
 
-def getFile(filename: str) -> list[str]:
-    with open(filename, 'r') as fBuffer:
-        return fBuffer.readlines()
+        pass
 
-def readTask(fBuffer: list[str], filename: str):
-    taskList = list()
-    for i in fBuffer: 
-        # FIX startswith(commSufix) <- based on languge; only work with python
-        if i.startswith('#') & any(temp in i for temp in taskTuple): 
-            taskList.append(i.replace('\n', ''))
+    def findFiles(self, chosenFolder=None):
+        print(chosenFolder)
+        fmtGlobPath = os.path.join(self.cwd, "*")
 
-    print(f"@ {filename} :: found {len(taskList)} tasks! (ln: {len(fBuffer)})")
+        for name in glob.glob(fmtGlobPath, recursive=True): 
+            matchedRef = re.search(r'^.+\.[a-zA-Z0-9]+$', name)
 
-    # NOTE we print todo's here
-    for i in taskList: print("    ", i)
-    pass
+            if matchedRef: self.foundFiles.append(name)
+
+        return self.foundFiles
+
+    def fetchBuffer(self) -> list[dict]:
+        for file in self.foundFiles:
+            if os.path.isfile(file):
+                with open(file,'r') as fopen_buffer:
+                    newBuffer = {"filename": file, "buffer": fopen_buffer.readlines()}
+                    self.taskBuffers.append(newBuffer)
+
+        return self.taskBuffers
+
+    def fetchTasks(self):
+        for iDicts in self.taskBuffers:
+            for lines in iDicts["buffer"]: 
+                if lines.startswith("#"): 
+                    print(lines.replace('\n', ''))
+        pass
 
 def main():
+    foundFiles = Utils()
+    
     args = sys.argv[1:]
     print(f"count of args :: {len(args)}")
 
-    for iArg in args:
-        tempExPath = os.path.join(os.getcwd(), "src", iArg)
-        if os.path.isfile(tempExPath): readTask(getFile(tempExPath), iArg)
+    foundFiles.findFiles(args)
+    foundFiles.fetchBuffer()
+    foundFiles.fetchTasks()
 
-        # print(f"count of args :: {args[iArg]}")
-    
+
     # exPath = os.path.join(os.getcwd(), "src", "ex.py")
     
     pass
