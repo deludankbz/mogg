@@ -1,4 +1,6 @@
-# mogg
+<p align="center">
+<img width="200" alt="mogg logo" src="https://raw.githubusercontent.com/deludankbz/mogg/refs/heads/main/extra/mogg-logo.png">
+</p>
 
 Find your all of your TODO's.
 ## Usage/Examples
