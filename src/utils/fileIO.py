@@ -60,7 +60,10 @@ class Utils:
                     self.foundTasks.append(fmtLine)
 
             if len(self.foundTasks) > 0: 
-                print(f"\x1b[1;90m\n@ {iDicts["filename"]} :: found {len(self.foundTasks)} tasks!\x1b[0m\n")
+                relativePath = os.path.relpath(iDicts["filename"], self.cwd)
+                taskAmount = len(self.foundTasks)
+
+                print(f"\x1b[1;90m\n@ {relativePath} :: found {taskAmount} tasks!\x1b[0m\n")
 
                 for i in self.foundTasks: 
                     print(f"\t\x1b[1;96m{i}\x1b[0m")
