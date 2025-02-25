@@ -1,4 +1,4 @@
-# codeThings
+# mogg
 
 Find your all of your TODO's.
 ## Usage/Examples
@@ -20,7 +20,7 @@ $ python3 main.py
 
 @ README.md :: found 1 tasks!
 
-	# codeThings - Find your all of your TODO's
+	# mogg - Find your all of your TODO's
 ```
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
