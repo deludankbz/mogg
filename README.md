@@ -26,7 +26,7 @@ $ python3 main.py
 
 ## Goals
 - Better ignore and extensions
-- Better comment handeling since quite a few languages have multiline comments
+- Better comment handling since quite a few languages have multiline comments
 - Options to: 
     - Print all comments
     - Print comments only for a selected language
