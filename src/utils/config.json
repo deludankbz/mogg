@@ -4,7 +4,7 @@
       "aliases": [ "py", "python" ],
       "comPrefix": [ "#" ],
       "ext": [ ".py" ],
-      "ign": [ "venv/", ".git/" ]
+      "ign": [ "venv/" ]
     },
     "c":{
       "aliases": [ "clang", "c" ],
