@@ -2,8 +2,6 @@ import os
 import glob
 import re
 
-# FIX: gitignore might not be present in path; will cause erros
-
 class Utils:
     def __init__(self) -> None:
         # TODO: make this bit into a config file
@@ -34,8 +32,12 @@ class Utils:
             return self.foundFiles
 
     def fetchBuffer(self) -> list[dict]:
+
+        print(self.foundFiles)
+
         for file in self.foundFiles:
-            if os.path.isfile(file) and not file.endswith('.png'):
+            if os.path.isfile(file):
+
                 with open(file,'r') as fopen_buffer:
                     newBuffer = {"filename": file, "buffer": fopen_buffer.readlines()}
                     self.fileBuffers.append(newBuffer)
@@ -48,7 +50,8 @@ class Utils:
             for line in iDicts["buffer"]: 
                 fmtLine = line.replace('\n', '').replace('    ', '')
 
-                if fmtLine.startswith('/*') & any(temp in fmtLine for temp in self.taskTokens): 
+                # TODO: i shit; in my pants; no light; no music; JUST ANGER;
+                if fmtLine.startswith('#') & any(temp in fmtLine for temp in self.taskTokens): 
                     self.foundTasks.append(fmtLine)
 
             if len(self.foundTasks) > 0: 

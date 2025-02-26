@@ -1,7 +1,7 @@
 import typer
 
 from utils.fileIO import Utils
-from utils.config import printConfig
+from utils.config import Config
 
 app = typer.Typer(name="codeThings")
 
@@ -10,15 +10,17 @@ app = typer.Typer(name="codeThings")
 @app.command()
 def main(
         lang: str = typer.Option("", "--lang", help="choose a language")): 
-    # foundFiles = Utils()
-    #
-    # foundFiles.pathSelector()
-    # foundFiles.findFiles('.gitignore')
-    # foundFiles.fetchBuffer()
-    #
-    # foundFiles.fetchTasks()
 
-    printConfig() 
+    foundFiles = Utils()
+    conf = Config()
+
+    conf.getConfig()
+
+    foundFiles.pathSelector()
+    foundFiles.findFiles(tuple(conf.allowedExt), conf.ignoreme)
+    foundFiles.fetchBuffer()
+
+    foundFiles.fetchTasks()
 
     pass
 
