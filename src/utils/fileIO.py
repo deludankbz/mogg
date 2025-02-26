@@ -1,7 +1,6 @@
 import os
 import glob
 import re
-from pathspec import PathSpec
 
 # FIX: gitignore might not be present in path; will cause erros
 
@@ -21,15 +20,7 @@ class Utils:
         if chosenFolder != None: return os.path.join(self.cwd, chosenFolder)
         else: return self.cwd
 
-    def findFiles(self, ignoreFilePath: str):
-        
-        if not os.path.isfile(ignoreFilePath):
-            raise Exception(f"No such file named {ignoreFilePath} in: {self.cwd}")
-
-        with open(ignoreFilePath, 'r', encoding='utf-8') as f:
-            ignFile = f.readlines()
-
-            spec = PathSpec.from_lines('gitwildmatch', ignFile)
+    def findFiles(self, extensions: tuple, ignore: list):
 
             fmtGlobPath = os.path.join(self.pathSelector(), "**")
 
@@ -37,13 +28,14 @@ class Utils:
                 matchedRef = re.search(r'^.+\.[a-zA-Z0-9]+$', name)
 
                 if matchedRef: 
-                    if not spec.match_file(name): self.foundFiles.append(name)
+                    if not any(i in name for i in ignore) and name.endswith(extensions):
+                        self.foundFiles.append(name)
 
             return self.foundFiles
 
     def fetchBuffer(self) -> list[dict]:
         for file in self.foundFiles:
-            if os.path.isfile(file):
+            if os.path.isfile(file) and not file.endswith('.png'):
                 with open(file,'r') as fopen_buffer:
                     newBuffer = {"filename": file, "buffer": fopen_buffer.readlines()}
                     self.fileBuffers.append(newBuffer)
@@ -56,7 +48,7 @@ class Utils:
             for line in iDicts["buffer"]: 
                 fmtLine = line.replace('\n', '').replace('    ', '')
 
-                if fmtLine.startswith('#') & any(temp in fmtLine for temp in self.taskTokens): 
+                if fmtLine.startswith('/*') & any(temp in fmtLine for temp in self.taskTokens): 
                     self.foundTasks.append(fmtLine)
 
             if len(self.foundTasks) > 0: 

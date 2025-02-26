@@ -1,0 +1,16 @@
+{
+  "languages":{
+    "python":{
+      "aliases": [ "py", "python" ],
+      "comPrefix": [ "#" ],
+      "ext": [ ".py" ],
+      "ign": [ "venv/", ".git/" ]
+    },
+    "c":{
+      "aliases": [ "clang", "c" ],
+      "comPrefix": [ "//", "/*", "*" ],
+      "ext": [ ".c", ".h" ],
+      "ign": []
+    }
+  }
+}
