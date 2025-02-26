@@ -5,6 +5,7 @@ import re
 class Utils:
     def __init__(self) -> None:
         # TODO: make this bit into a config file
+
         self.taskTokens = ("TODO", "FIX", "NOTE", "ERROR")
         self.fileBuffers = list()
         self.foundTasks = list()
@@ -26,14 +27,13 @@ class Utils:
                 matchedRef = re.search(r'^.+\.[a-zA-Z0-9]+$', name)
 
                 if matchedRef: 
+                    
                     if not any(i in name for i in ignore) and name.endswith(extensions):
                         self.foundFiles.append(name)
 
             return self.foundFiles
 
     def fetchBuffer(self) -> list[dict]:
-
-        print(self.foundFiles)
 
         for file in self.foundFiles:
             if os.path.isfile(file):
@@ -51,7 +51,7 @@ class Utils:
                 fmtLine = line.replace('\n', '').replace('    ', '')
 
                 # TODO: i shit; in my pants; no light; no music; JUST ANGER;
-                if fmtLine.startswith('#') & any(temp in fmtLine for temp in self.taskTokens): 
+                if fmtLine.startswith('#'): # & any(temp in fmtLine for temp in self.taskTokens): 
                     self.foundTasks.append(fmtLine)
 
             if len(self.foundTasks) > 0: 

@@ -7,8 +7,12 @@ class Config():
         self.configFilePath = os.path.join(os.getcwd(), "src", "utils", "config.json")
         self.configFile = dict()
  
+        self.languages = list()
+        self.aliases = list()
+
         self.ignoreme = list()
         self.allowedExt = list()
+
         pass
 
     def makeSelection(self):
@@ -25,8 +29,10 @@ class Config():
             self.configFile = json.load(f)
 
         for lang, details in self.configFile['languages'].items():
+            self.languages.append(lang)
             for iExt in details['ext']: self.allowedExt.append(iExt)
             for iIgn in details['ign']: self.ignoreme.append(iIgn)
+            for iAlias in details['aliases']: self.aliases.append(iAlias)
 
         return self.configFile 
 
