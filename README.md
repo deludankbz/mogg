@@ -24,4 +24,11 @@ $ python3 main.py
 	# mogg - Find your all of your TODO's
 ```
 
+## Goals
+- Better ignore and extensions
+- Better comment handeling since quite a few languages have multiline comments
+- Options to: 
+    - Print all comments
+    - Print comments only for a selected language
+
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)

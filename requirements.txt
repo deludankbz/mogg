@@ -1,6 +1,7 @@
 click
 markdown-it-py
 mdurl
+pathspec
 Pygments
 rich
 shellingham
