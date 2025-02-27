@@ -21,7 +21,7 @@ class Config():
         pass
 
     # TODO: implement this
-    def makeSelection(self):
+    def makeSelection(self) -> tuple:
         "See presented extensions and chose available extensions accordingly."
 
         if not self.configFile:
@@ -34,9 +34,7 @@ class Config():
             ext_match = re.search(r"\.[^./]+$", i)
             if ext_match: self.selected.append(ext_match[0])
 
-        print(tuple(self.selected))
-                        
-        pass
+        return tuple(set(self.selected))
 
     def getConfig(self):
 
