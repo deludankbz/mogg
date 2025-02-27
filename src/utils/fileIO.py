@@ -2,13 +2,10 @@ import os
 import glob
 import re
 
-class Utils:
+class FileIO:
     def __init__(self) -> None:
-        # TODO: make this bit into a config file
 
-        self.taskTokens = ("TODO", "FIX", "NOTE", "ERROR")
         self.fileBuffers = list()
-        self.foundTasks = list()
 
         self.cwd = os.getcwd()
         self.foundFiles = list()
@@ -44,24 +41,3 @@ class Utils:
 
         return self.fileBuffers
 
-    def fetchTasks(self):
-        for iDicts in self.fileBuffers: 
-
-            for line in iDicts["buffer"]: 
-                fmtLine = line.replace('\n', '').replace('    ', '')
-
-                # TODO: i shit; in my pants; no light; no music; JUST ANGER;
-                if fmtLine.startswith('#'): # & any(temp in fmtLine for temp in self.taskTokens): 
-                    self.foundTasks.append(fmtLine)
-
-            if len(self.foundTasks) > 0: 
-                relativePath = os.path.relpath(iDicts["filename"], self.cwd)
-                taskAmount = len(self.foundTasks)
-
-                print(f"\x1b[1;90m\n@ {relativePath} :: found {taskAmount} tasks!\x1b[0m\n")
-
-                for i in self.foundTasks: 
-                    print(f"\t\x1b[1;96m{i}\x1b[0m")
-
-                self.foundTasks.clear()
-        pass

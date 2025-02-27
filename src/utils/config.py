@@ -1,6 +1,7 @@
 import json
 import os
-from utils.fileIO import Utils
+
+from utils.fileIO import FileIO
 
 class Config():
     def __init__(self) -> None:
@@ -9,12 +10,14 @@ class Config():
  
         self.languages = list()
         self.aliases = list()
+        self.patterns = list()
 
         self.ignoreme = list()
         self.allowedExt = list()
 
         pass
 
+    # TODO: implement this
     def makeSelection(self):
         "See presented filepaths and chose extensions accordingly."
 
@@ -33,6 +36,7 @@ class Config():
             for iExt in details['ext']: self.allowedExt.append(iExt)
             for iIgn in details['ign']: self.ignoreme.append(iIgn)
             for iAlias in details['aliases']: self.aliases.append(iAlias)
+            for iPatterns in details['cmtPattern']: self.patterns.append(iPatterns)
 
         return self.configFile 
 
@@ -41,7 +45,7 @@ class Config():
         if not self.configFile:
             self.getConfig()
 
-        new_FIO = Utils()
+        new_FIO = FileIO()
         new_FIO.pathSelector()
         foundFiles = new_FIO.findFiles(tuple(self.allowedExt), self.ignoreme)
 
