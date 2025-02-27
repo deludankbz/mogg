@@ -26,7 +26,8 @@ $ python3 main.py
 
 ## Goals
 - Better ignore and extensions
-- Better comment handling with REGEX; quite a few languages have multiline comments
+- <del>Better language selection; if none provided check the ones inside cwd</del>
+- <del>Better comment handling with REGEX; quite a few languages have multiline comments</del>
 - Options to: 
     - Print all comments
     - Print comments only for a selected language
