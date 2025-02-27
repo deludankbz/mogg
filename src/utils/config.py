@@ -1,5 +1,6 @@
 import json
 import os
+import re, glob
 
 from utils.fileIO import FileIO
 
@@ -12,6 +13,8 @@ class Config():
         self.aliases = list()
         self.patterns = list()
 
+        self.selected = list()
+
         self.ignoreme = list()
         self.allowedExt = list()
 
@@ -19,11 +22,20 @@ class Config():
 
     # TODO: implement this
     def makeSelection(self):
-        "See presented filepaths and chose extensions accordingly."
+        "See presented extensions and chose available extensions accordingly."
 
         if not self.configFile:
             self.getConfig()
 
+
+        foundFiles = FileIO().findFiles(tuple(self.allowedExt), self.ignoreme)
+
+        for i in foundFiles:
+            ext_match = re.search(r"\.[^./]+$", i)
+            if ext_match: self.selected.append(ext_match[0])
+
+        print(tuple(self.selected))
+                        
         pass
 
     def getConfig(self):

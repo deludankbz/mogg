@@ -9,7 +9,14 @@ app = typer.Typer(name="codeThings")
 
 @app.command()
 def test(): 
-    Config().printConfig()
+    Config().makeSelection()
+    # print(conf.patterns[1])
+    # with open("/home/deludank/Documents/Code/C/gismo/src/lexer.c", 'r') as f:
+    #     file_buffer = f.readlines()
+    #
+    # ml_Matches = re.findall(conf.patterns[1], ''.join(file_buffer))
+    # for matches in ml_Matches:
+    #     print(matches)
     pass
 
 # @app.command()
@@ -47,7 +54,7 @@ def test():
 #     foundFiles.fetchBuffer()
 #
 #     foundFiles.getTasks()
-#     foundFiles.showTasks()
+#     foundFiles.showTasks
 #
 #     pass
 
