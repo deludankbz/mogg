@@ -25,11 +25,11 @@ $ python3 main.py
 ```
 
 ## Goals
-- Better ignore and extensions
+- <del>Better ignore and extensions</del>
 - <del>Better language selection; if none provided check the ones inside cwd</del>
 - <del>Better comment handling with REGEX; quite a few languages have multiline comments</del>
 - Options to: 
-    - Print all comments
+    - <del>Print all comments</del>
     - Print comments only for a selected language
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
