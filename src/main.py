@@ -8,18 +8,6 @@ app = typer.Typer(name="codeThings")
 
 # TODO: progress bar to indicate where processing is happening
 
-# @app.command()
-# def test(): 
-#     print(Config().makeSelection())
-#     print(conf.patterns[1])
-#     with open("/home/deludank/Documents/Code/C/gismo/src/lexer.c", 'r') as f:
-#         file_buffer = f.readlines()
-#
-#     ml_Matches = re.findall(conf.patterns[1], ''.join(file_buffer))
-#     for matches in ml_Matches:
-#         print(matches)
-#     pass
-
 @app.command()
 def run( showComments: bool = typer.Option(False, "--showComments", help="Show all comments" )):
     newIO, conf = FileIO(), Config()
