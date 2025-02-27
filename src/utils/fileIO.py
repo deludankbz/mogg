@@ -10,13 +10,13 @@ class FileIO:
 
         pass
 
-    def pathSelector(self, chosenFolder=None) -> str:
+    def getPath(self, chosenFolder=None) -> str:
         if chosenFolder != None: return os.path.join(self.cwd, chosenFolder)
         else: return self.cwd
 
     def findFiles(self, extensions: tuple, ignore: list):
 
-            fmtGlobPath = os.path.join(self.pathSelector(), "**")
+            fmtGlobPath = os.path.join(self.getPath(), "**")
 
             for name in glob.glob(fmtGlobPath, recursive=True):
                 matchedRef = re.search(r'^.+\.[a-zA-Z0-9]+$', name)

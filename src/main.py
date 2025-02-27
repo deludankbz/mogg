@@ -22,7 +22,12 @@ app = typer.Typer(name="codeThings")
 @app.command()
 def run( showComments: bool = typer.Option(False, "--showComments", help="Show all comments" )):
     newIO, conf = FileIO(), Config() 
-    print(conf.getConfig(), conf.makeSelection())
+    conf.getConfig()
+    inDirExtensions = conf.makeSelection()
+
+    newIO.getPath()
+    x = newIO.findFiles(inDirExtensions, conf.ignoreme)
+    print(x)
     pass
 
 # @app.command()
