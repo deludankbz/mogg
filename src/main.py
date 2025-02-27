@@ -1,5 +1,5 @@
-import typer
-import re
+import typer, re
+from utils import fileIO
 from utils.fileIO import FileIO
 from utils.config import Config
 
@@ -7,23 +7,24 @@ app = typer.Typer(name="codeThings")
 
 # TODO: progress bar to indicate where processing is happening
 
+# @app.command()
+# def test(): 
+#     print(Config().makeSelection())
+#     print(conf.patterns[1])
+#     with open("/home/deludank/Documents/Code/C/gismo/src/lexer.c", 'r') as f:
+#         file_buffer = f.readlines()
+#
+#     ml_Matches = re.findall(conf.patterns[1], ''.join(file_buffer))
+#     for matches in ml_Matches:
+#         print(matches)
+#     pass
+
 @app.command()
-def test(): 
-    Config().makeSelection()
-    # print(conf.patterns[1])
-    # with open("/home/deludank/Documents/Code/C/gismo/src/lexer.c", 'r') as f:
-    #     file_buffer = f.readlines()
-    #
-    # ml_Matches = re.findall(conf.patterns[1], ''.join(file_buffer))
-    # for matches in ml_Matches:
-    #     print(matches)
+def run( showComments: bool = typer.Option(False, "--showComments", help="Show all comments" )):
+    newIO, conf = FileIO(), Config() 
+    print(conf.getConfig(), conf.makeSelection())
     pass
 
-# @app.command()
-# def run( showComments: bool = typer.Option(False, "--showComments", help="Show all comments" )):
-#     print(showComments)
-#     pass
-#
 # @app.command()
 # def main( lang: str = typer.Option(None, "--lang", help="Select a specific language" )): 
 #

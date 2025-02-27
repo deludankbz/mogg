@@ -1,6 +1,4 @@
-import os
-import glob
-import re
+import os, glob, re
 
 class FileIO:
     def __init__(self) -> None:
