@@ -31,10 +31,14 @@ class FileIO:
     def fetchBuffer(self) -> list[dict]:
 
         for file in self.foundFiles:
+            # FIX NOTE some files don't have extensions
             if os.path.isfile(file):
 
                 with open(file,'r') as fopen_buffer:
-                    newBuffer = {"filename": file, "buffer": fopen_buffer.readlines()}
+                    ext = re.search(r"\.[^./]+$", file)
+                    if ext: newBuffer = {"filename": file, "buffer": fopen_buffer.readlines(), "ext": ext[0]}
+                    # NOTE that's what i meant
+                    else: newBuffer = {"filename": file, "buffer": fopen_buffer.readlines(), "ext": None}
                     self.fileBuffers.append(newBuffer)
 
         return self.fileBuffers

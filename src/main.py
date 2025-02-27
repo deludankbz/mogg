@@ -1,7 +1,8 @@
 import typer, re
-from utils import fileIO
+from utils import tasker
 from utils.fileIO import FileIO
 from utils.config import Config
+from utils.tasker import Tasker
 
 app = typer.Typer(name="codeThings")
 
@@ -21,13 +22,18 @@ app = typer.Typer(name="codeThings")
 
 @app.command()
 def run( showComments: bool = typer.Option(False, "--showComments", help="Show all comments" )):
-    newIO, conf = FileIO(), Config() 
+    newIO, conf = FileIO(), Config()
+    tasker = Tasker(newIO.getPath())
+
     conf.getConfig()
     inDirExtensions = conf.makeSelection()
 
     newIO.getPath()
-    x = newIO.findFiles(inDirExtensions, conf.ignoreme)
-    print(x)
+    newIO.findFiles(inDirExtensions, conf.ignoreme)
+
+    newIO.fetchBuffer()
+    # tasker.getTasks(newIO.fileBuffers, conf.patterns)
+    # newIO.showTasks()
     pass
 
 # @app.command()

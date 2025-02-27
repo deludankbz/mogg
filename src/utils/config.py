@@ -1,4 +1,4 @@
-import re, glob, json, os
+import re, json, os
 from utils.fileIO import FileIO
 
 class Config():
@@ -10,7 +10,8 @@ class Config():
         self.aliases = list()
         self.patterns = list()
 
-        self.selected = list()
+        self.selExtension = list()
+        self.selPattern = list()
 
         self.ignoreme = list()
         self.allowedExt = list()
@@ -19,17 +20,42 @@ class Config():
 
         pass
 
+    def getLangByExtension(self, extension: str) -> dict | None:
+
+        if not self.configFile: self.getConfig()
+
+        for lang, details in self.configFile['languages'].items():
+            if extension in details["ext"]: return details
+            else: pass
+        return None
+
+    def getLangByAlias(self, alias: str) -> dict | None:
+
+        if not self.configFile: self.getConfig()
+
+        for lang, details in self.configFile['languages'].items():
+            if alias in details["aliases"]: return details
+            else: pass
+        return None
+
     def makeSelection(self) -> tuple:
         "See presented extensions and chose available extensions accordingly."
 
-        if not self.configFile:
-            self.getConfig()
+        if not self.configFile: self.getConfig()
 
+        matches = list()
         for i in self.foundFiles:
             ext_match = re.search(r"\.[^./]+$", i)
-            if ext_match: self.selected.append(ext_match[0])
+            if ext_match: matches.append(ext_match[0])
+        
+        self.selExt = tuple(set(matches)) 
 
-        return tuple(set(self.selected))
+        for ext in self.selExt:
+            langDetails = self.getLangByExtension(ext)
+            print(langDetails["cmtPattern"])
+            self.selPattern = langDetails
+
+        return self.selExt
 
     def getConfig(self) -> dict:
 
@@ -49,8 +75,7 @@ class Config():
 
     def printConfig(self) -> None:
         
-        if not self.configFile:
-            self.getConfig()
+        if not self.configFile: self.getConfig()
 
         print(self.foundFiles)
         pass

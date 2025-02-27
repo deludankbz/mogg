@@ -3,14 +3,14 @@
 
     "python":{
       "aliases": [ "py", "python" ],
-      "cmtPattern": [ "^#.*$" ],
+      "cmtPattern": [ "#.*" ],
       "ext": [ ".py" ],
       "ign": [ "venv/", ".png" ]
     },
 
     "c":{
       "aliases": [ "clang", "c" ],
-      "cmtPattern": [ "\\/\\*[\\s\\S]*?\\*\\/", "^//.*$" ],
+      "cmtPattern": [ "\\/\\*[\\s\\S]*?\\*\\/", "//.*" ],
       "ext": [ ".c", ".h" ],
       "ign": [ ".o" ]
     }
