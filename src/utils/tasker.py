@@ -42,5 +42,6 @@ class Tasker:
                         if any(temp in i for temp in self.taskTokens): print(f"\t\x1b[1;96m{i}\x1b[0m")
 
                 self.foundTasks.clear()
+                print('')
 
         return self.foundTasks
