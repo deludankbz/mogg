@@ -26,13 +26,13 @@ def run( showComments: bool = typer.Option(False, "--showComments", help="Show a
     tasker = Tasker(newIO.getPath())
 
     conf.getConfig()
-    inDirExtensions = conf.makeSelection()
+    seleted = conf.makeSelection()
 
     newIO.getPath()
-    newIO.findFiles(inDirExtensions, conf.ignoreme)
+    newIO.findFiles(seleted, conf.ignoreme)
 
     newIO.fetchBuffer()
-    # tasker.getTasks(newIO.fileBuffers, conf.patterns)
+    tasker.getTasks(newIO.fileBuffers, showComments)
     # newIO.showTasks()
     pass
 

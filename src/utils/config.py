@@ -50,11 +50,6 @@ class Config():
         
         self.selExt = tuple(set(matches)) 
 
-        for ext in self.selExt:
-            langDetails = self.getLangByExtension(ext)
-            print(langDetails["cmtPattern"])
-            self.selPattern = langDetails
-
         return self.selExt
 
     def getConfig(self) -> dict:
