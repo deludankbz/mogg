@@ -5,29 +5,41 @@
 ## Usage/Examples
 
 ```bash
-$ python3 main.py
-
-@ src/ex.py :: found 4 tasks!
+@ src/ex.py :: found 7 tasks!
 
 	# TODO: fhosiofs
 	# FIX
 	# NOTE
 	# ERROR:
 
+
+@ src/utils/config.py :: found 1 tasks!
+
+	# FIX: put source files in a fixed place
+
+
+@ src/utils/tasker.py :: found 4 tasks!
+
+	# FIX check for empty buffer
+	# FIX choose patterns correc.
+
+
 @ src/utils/fileIO.py :: found 2 tasks!
 
-	# FIX: gitignore might not be present in path; will cause erros
-	# TODO: make this bit into a config file
+	# FIX NOTE some files don't have extensions
+	# NOTE that's what i meant
 
-@ README.md :: found 1 tasks!
 
-	# mogg - Find your all of your TODO's
+@ src/main.py :: found 34 tasks!
+
+	# TODO: progress bar to indicate where processing is happening
 ```
 
 ## Goals
 - <del>Better ignore and extensions</del>
 - <del>Better language selection; if none provided check the ones inside cwd</del>
 - <del>Better comment handling with REGEX; quite a few languages have multiline comments</del>
+- Store source files in a separated folder
 - Options to: 
     - <del>Print all comments</del>
     - Print comments only for a selected language

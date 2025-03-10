@@ -21,7 +21,6 @@ def run( showComments: bool = typer.Option(False, "--showComments", help="Show a
 
     newIO.fetchBuffer()
     tasker.getTasks(newIO.fileBuffers, showComments)
-    # newIO.showTasks()
     pass
 
 # @app.command()

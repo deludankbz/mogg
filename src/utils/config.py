@@ -3,6 +3,7 @@ from utils.fileIO import FileIO
 
 class Config():
     def __init__(self) -> None:
+        # FIX: put source files in a fixed place
         self.configFilePath = os.path.join(os.getcwd(), "src", "utils", "config.json")
         self.configFile = dict()
  
