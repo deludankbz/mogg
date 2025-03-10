@@ -5,7 +5,7 @@
 ## Usage/Examples
 
 ```bash
-@ src/ex.py :: found 7 tasks!
+@ src/ex.py :: found 7 comments!
 
 	# TODO: fhosiofs
 	# FIX
@@ -13,24 +13,24 @@
 	# ERROR:
 
 
-@ src/utils/config.py :: found 1 tasks!
+@ src/utils/config.py :: found 1 comments!
 
 	# FIX: put source files in a fixed place
 
 
-@ src/utils/tasker.py :: found 4 tasks!
+@ src/utils/tasker.py :: found 4 comments!
 
 	# FIX check for empty buffer
 	# FIX choose patterns correc.
 
 
-@ src/utils/fileIO.py :: found 2 tasks!
+@ src/utils/fileIO.py :: found 2 comments!
 
 	# FIX NOTE some files don't have extensions
 	# NOTE that's what i meant
 
 
-@ src/main.py :: found 34 tasks!
+@ src/main.py :: found 34 comments!
 
 	# TODO: progress bar to indicate where processing is happening
 ```

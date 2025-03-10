@@ -34,7 +34,7 @@ class Tasker:
                 relPath = os.path.relpath(iDicts["filename"], self.cwd)
                 taskAmount = len(self.foundTasks)
 
-                print(f"\x1b[1;90m\n@ {relPath} :: found {taskAmount} tasks!\x1b[0m\n")
+                print(f"\x1b[1;90m\n@ {relPath} :: found {taskAmount} comments!\x1b[0m\n")
 
                 for i in self.foundTasks: 
                     if allComments: print(f"\t\x1b[1;96m{i}\x1b[0m")
