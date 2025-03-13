@@ -37,6 +37,7 @@ $ python3 src/main.py
 ```
 
 ## Goals
+
 - <del>Better ignore and extensions</del>
 - <del>Better language selection; if none provided check the ones inside cwd</del>
 - <del>Better comment handling with REGEX; quite a few languages have multiline comments</del>
