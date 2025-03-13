@@ -5,6 +5,7 @@
 ## Usage/Examples
 
 ```bash
+$ python3 src/main.py
 @ src/ex.py :: found 7 comments!
 
 	# TODO: fhosiofs
