@@ -41,6 +41,7 @@ $ python3 src/main.py
 - <del>Better language selection; if none provided check the ones inside cwd</del>
 - <del>Better comment handling with REGEX; quite a few languages have multiline comments</del>
 - Store source files in a separated folder
+- Colored TODO; FIX; NOTE; etc...
 - Options to: 
     - <del>Print all comments</del>
     - Print comments only for a selected language
