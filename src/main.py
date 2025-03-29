@@ -1,5 +1,4 @@
-import typer, re
-from utils import tasker
+import typer
 from utils.fileIO import FileIO
 from utils.config import Config
 from utils.tasker import Tasker
